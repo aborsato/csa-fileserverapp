@@ -1,13 +1,23 @@
-module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
+const { Client } = require('pg');
 
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+module.exports = function (context, req) {
+    const client = new Client({
+        host: process.env['db_server'],
+        user: process.env['db_user'],
+        password: process.env['db_password'],
+        database: process.env['db_database'],
+        port: 5432,
+        ssl: true
+    });
+    client.connect();
+    client.query('SELECT * FROM files', (err, res) => {
+        client.end();
+        context.res = {
+            status: 200,
+            body: res.rows
+        };
+        context.log('to be done', res.rows);
+        context.done();
+    });
 
-    context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: responseMessage
-    };
 }
