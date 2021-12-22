@@ -1,18 +1,18 @@
 import React, { useContext, useEffect } from "react";
-import { PhotoContext } from "../context/FileContext";
-import Gallery from "./Gallery";
+import { FileContext } from "../context/FileContext";
+import FileTable from "./FileTable";
 import Loader from "./Loader";
 
 const Container = ({ searchTerm }) => {
-  const { images, loading, runSearch } = useContext(PhotoContext);
+  const { files, loading, runSearch } = useContext(FileContext);
   useEffect(() => {
     runSearch(searchTerm);
     // eslint-disable-next-line
   }, [searchTerm]);
 
   return (
-    <div className="photo-container">
-      {loading ? <Loader /> : <Gallery data={images} />}
+    <div className="">
+      {loading ? <Loader /> : <FileTable data={files} />}
     </div>
   );
 };

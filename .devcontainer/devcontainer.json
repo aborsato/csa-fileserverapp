@@ -16,15 +16,19 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"dbaeumer.vscode-eslint",
+		"ms-vscode.azure-account",
 		"ms-azuretools.vscode-azurestaticwebapps",
-		"ms-vscode.azure-account"
+		"ms-azuretools.vscode-azurefunctions"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	"postCreateCommand": [
+		"npm install -g @azure/static-web-apps-cli",
+		"npm install -g azure-functions-core-tools@3"
+	],
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "node",
