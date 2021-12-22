@@ -15,3 +15,9 @@ Run the command:
 ```bash
 swa start build --api-location api
 ```
+
+Run the function:
+```bash
+cd api
+func start
+curl -H "Content-Type: application/json" -X POST -d '{"blobName":"file"}' http://localhost:7071/api/sas

@@ -6,7 +6,10 @@ var azure = require('azure-storage');
 
 module.exports = async function (context, req) {
     if (req.body && req.body.blobName) {
-        context.res = generateSasToken(context, "files", req.body.blobName);
+        context.res = {
+            status: 200,
+            body: generateSasToken(context, "files", req.body.blobName)
+        }
     } else {
         context.res = {
             status: 400,
@@ -14,7 +17,8 @@ module.exports = async function (context, req) {
         };
     }
     
-    context.done();
+    context.log('Response', context.res);
+    // context.done();
 }
 
 function generateSasToken(context, container, blobName, permissions) {
@@ -39,7 +43,6 @@ function generateSasToken(context, container, blobName, permissions) {
     };
     
     var sasToken = blobService.generateSharedAccessSignature(container, blobName, sharedAccessPolicy);
-    context.log('SAS Token', sasToken);
     return {
         token: sasToken,
         uri: blobService.getUrl(container, blobName, sasToken, true)
