@@ -26,10 +26,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": [
-		"npm install -g @azure/static-web-apps-cli",
-		"npm install -g azure-functions-core-tools@3"
-	],
+	// "postCreateCommand": "",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "node",
