@@ -3,12 +3,12 @@ import { FileContext } from "../context/FileContext";
 import FileTable from "./FileTable";
 import Loader from "./Loader";
 
-const Container = ({ searchTerm }) => {
-  const { files, loading, runSearch } = useContext(FileContext);
+const Container = () => {
+  const { files, loading, listFiles } = useContext(FileContext);
   useEffect(() => {
-    runSearch(searchTerm);
+    listFiles();
     // eslint-disable-next-line
-  }, [searchTerm]);
+  }, []);
 
   return (
     <div className="">

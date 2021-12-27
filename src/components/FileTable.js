@@ -19,7 +19,7 @@ const FileTable = props => {
             <tr key={key}>
               <td>{file.name}</td>
               <td>{file.owner}</td>
-              <td>{file.date}</td>
+              <td>{file.created_on}</td>
               <td>download | share</td>
             </tr>
           )

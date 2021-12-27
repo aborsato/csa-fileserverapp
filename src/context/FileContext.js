@@ -5,7 +5,7 @@ export const FileContext = createContext();
 const FileContextProvider = props => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
-  const runSearch = query => {
+  const listFiles = query => {
     axios
       .get(`/api/files`)
       .then(response => {
@@ -20,7 +20,7 @@ const FileContextProvider = props => {
       });
   };
   return (
-    <FileContext.Provider value={{ files, loading, runSearch }}>
+    <FileContext.Provider value={{ files, loading, listFiles }}>
       {props.children}
     </FileContext.Provider>
   );
