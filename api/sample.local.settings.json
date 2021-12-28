@@ -1,0 +1,10 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "ApplicationStorage": "[Azure Storage Key]",
+        "db_server": "abcdefg.postgres.database.azure.com",
+        "db_user": "",
+        "db_password": "",
+        "db_database": ""
+    }
+}
