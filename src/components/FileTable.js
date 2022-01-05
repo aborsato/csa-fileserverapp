@@ -1,5 +1,6 @@
 import React from "react";
 import NoFiles from "./NoFiles";
+import Download from './Download';
 
 const FileTable = props => {
   const results = props.data;
@@ -20,7 +21,7 @@ const FileTable = props => {
               <td>{file.name}</td>
               <td>{file.owner}</td>
               <td>{file.created_on}</td>
-              <td>download | share</td>
+              <td><Download fileName={file.name} /></td>
             </tr>
           )
         })}
