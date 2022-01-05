@@ -4,24 +4,44 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Build
+## Build the Application
 Run the command:
 ```bash
 npm run build
 ```
 
 ## Run Locally
-Run the command:
-```bash
-swa start build --api-location api
-```
+1. Add a file `api/local.settings.json`:
+   ```json
+   {
+       "IsEncrypted": false,
+       "Values": {
+           "ApplicationStorage": "[Azure Storage Key]",
+           "db_server": "abcdefg.postgres.database.azure.com",
+           "db_user": "",
+           "db_password": "",
+           "db_database": ""
+       }
+   }
+   ```
 
-Run the function:
-```bash
-cd api
-func start
-curl -H "Content-Type: application/json" -X POST -d '{"blobName":"file"}' http://localhost:7071/api/sas
-```
+1. Run the command to start the Static Web App server
+   ```bash
+   swa start build --api-location api
+   ```
+
+## Run the Function API Locally:
+1. Add a file `api/local.settings.json` (see previous)
+1. Start the API
+   ```bash
+   cd api
+   func start
+   ```
+1. Call the API
+   ```bash
+   curl -H "Content-Type: application/json" -X GET http://localhost:7071/api/files
+   curl -H "Content-Type: application/json" -X POST -d '{"blobName":"file"}' http://localhost:7071/api/sas
+   ```
 
 ## Database
 Create a table to store the files metadata (used by the API to retrieve files by user)
