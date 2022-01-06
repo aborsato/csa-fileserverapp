@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { saveAs } from "file-saver";
 
 const Download = props => {
   const downloadFile = fileName => {
@@ -9,7 +10,7 @@ const Download = props => {
     axios
       .post(`/api/sas`, payload)
       .then(response => {
-        window.open(response.data.uri, "_blank");
+        saveAs(response.data.uri, fileName);
       })
       .catch(error => {
         console.log(
